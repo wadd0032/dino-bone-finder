@@ -26,6 +26,4 @@ foreach ($places_xml->Document->Folder[0]->Placemark as $place) {
 	$sql->execute();
 }
 
-// Lets us debug errors in our SQL code
-// REMOVE FROM PRODUCTION CODE!!!
 var_dump($sql->errorInfo());
