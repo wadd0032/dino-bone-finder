@@ -8,21 +8,20 @@ $results = $db->query('
 	ORDER BY name ASC
 ');
 
-?><!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Dinosaurs Bones!</title>
-</head>
-<body>
+include 'includes/theme-top.php';
 
-	<ul>
-	<?php foreach ($results as $dino) : ?>
-		<li>
-			<a href="single.php?id=<?php echo $dino['id']; ?>"><?php echo $dino['name']; ?></a>
-		</li>
-	<?php endforeach; ?>
-	</ul>
+?>
 
-</body>
-</html>
+<ul>
+<?php foreach ($results as $dino) : ?>
+	<li>
+		<a href="single.php?id=<?php echo $dino['id']; ?>"><?php echo $dino['name']; ?></a>
+	</li>
+<?php endforeach; ?>
+</ul>
+
+<?php
+
+include 'includes/theme-bottom.php';
+
+?>
