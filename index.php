@@ -3,7 +3,7 @@
 require_once 'includes/db.php';
 
 $results = $db->query('
-	SELECT id, name
+	SELECT id, name, adr, lat, lng
 	FROM dinobones
 	ORDER BY name ASC
 ');
@@ -12,13 +12,19 @@ include 'includes/theme-top.php';
 
 ?>
 
-<ul>
+<ol class="dinos">
 <?php foreach ($results as $dino) : ?>
-	<li>
-		<a href="single.php?id=<?php echo $dino['id']; ?>"><?php echo $dino['name']; ?></a>
+	<li itemscope itemtype="http://schema.org/TouristAttraction">
+		<a href="single.php?id=<?php echo $dino['id']; ?>" itemprop="name"><?php echo $dino['name']; ?></a>
+		<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+			<meta itemprop="latitude" content="<?php echo $dino['lat']; ?>">
+			<meta itemprop="longitude" content="<?php echo $dino['lng']; ?>">
+		</span>
 	</li>
 <?php endforeach; ?>
-</ul>
+</ol>
+
+<div id="map"></div>
 
 <?php
 
