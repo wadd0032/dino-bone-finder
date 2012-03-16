@@ -22,6 +22,7 @@ $(document).ready(function () {
 		// Style the content in your CSS
 		var info = '<div class="info-window">'
 			+ '<strong>' + dino + '</strong>'
+			+ '</div>'
 		;
 
 		// Determine this dino's latitude and longitude
