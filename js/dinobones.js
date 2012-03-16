@@ -1,6 +1,4 @@
 $(document).ready(function () {
-	var $dinoList = $('.dinos li');
-
 	// Create an object that holds options for the GMap
 	var gmapOptions = {
 		center : new google.maps.LatLng(45.423494,-75.697933)
@@ -15,7 +13,7 @@ $(document).ready(function () {
 	var infoWindow;
 
 	// Loop through all the places and add a marker to the GMap
-	$dinoList.each(function (i, elem) {
+	$('.dinos li').each(function (i, elem) {
 		var dino = $(this).find('a').html();
 
 		// Create some HTML content for the info window
