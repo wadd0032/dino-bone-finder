@@ -21,6 +21,7 @@ $(document).ready(function () {
       position : pos
       , map : map
       , title : dino
+      , icon : 'images/bone.png'
       , animation: google.maps.Animation.DROP
     });
   });
