@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	var $dinoList = $('.dinos li');
 
-	// Create an object that sets up the Google Maps API
+	// Create an object that holds options for the GMap
 	var gmapOptions = {
 		center : new google.maps.LatLng(45.423494,-75.697933)
 		, zoom : 13
@@ -11,7 +11,7 @@ $(document).ready(function () {
 	// Create a variable to hold the GMap and add the GMap to the page
 	var map = new google.maps.Map(document.getElementById('map'), gmapOptions);
 
-	// Create one info window to be shared for all markers
+	// Share one info window variable for all the markers
 	var infoWindow;
 
 	// Loop through all the places and add a marker to the GMap
@@ -38,7 +38,7 @@ $(document).ready(function () {
 			, animation: google.maps.Animation.DROP
 		});
 
-		// A function for showing this dinosaurs info window
+		// A function for showing this dinosaur's info window
 		function showInfoWindow (ev) {
 			if (ev.preventDefault) {
 				ev.preventDefault();
