@@ -5,3 +5,50 @@
 	top: 0;
 	width: 75%;
 }
+
+.dinos li meter {
+	display: inline-block;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	width: 0;
+
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.rater {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+
+	list-style-type: none;
+	line-height: 1;
+}
+
+.rater > li {
+	float: left;
+}
+
+.rater-level,
+.rater-level:link,
+.rater-level:visited {
+	color: #efecd2;
+	text-decoration: none
+}
+
+.is-rated,
+.is-rated:link,
+.is-rated:visited {
+	color: #ffe91f;
+}
+
+.rater-level:hover,
+.rater-level:focus,
+.rater-level:active,
+.is-rated:hover,
+.is-rated:focus,
+.is-rated:active {
+	color: #fda53a;
+}
