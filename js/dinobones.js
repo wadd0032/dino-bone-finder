@@ -1,64 +1,70 @@
 $(document).ready(function () {
-	// Create an object that holds options for the GMap
-	var gmapOptions = {
-		center : new google.maps.LatLng(45.423494,-75.697933)
-		, zoom : 13
-		, mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
 
-	// Create a variable to hold the GMap and add the GMap to the page
-	var map = new google.maps.Map(document.getElementById('map'), gmapOptions);
+  /****************************************************/
+  /***** Google Maps **********************************/
+  /****************************************************/
 
-	// Share one info window variable for all the markers
-	var infoWindow;
+  // Create an object that holds options for the GMap
+  var gmapOptions = {
+    center : new google.maps.LatLng(45.423494,-75.697933)
+    , zoom : 13
+    , mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
 
-	// Loop through all the places and add a marker to the GMap
-	$('.dinos li').each(function (i, elem) {
-		var dino = $(this).find('a').html();
+  // Create a variable to hold the GMap and add the GMap to the page
+  var map = new google.maps.Map(document.getElementById('map'), gmapOptions);
 
-		// Create some HTML content for the info window
-		// Style the content in your CSS
-		var info = '<div class="info-window">'
-			+ '<strong>' + dino + '</strong>'
-			+ '</div>'
-		;
+  // Share one info window variable for all the markers
+  var infoWindow;
 
-		// Determine this dino's latitude and longitude
-		var lat = $(this).find('meta[itemprop="latitude"]').attr('content');
-		var lng = $(this).find('meta[itemprop="longitude"]').attr('content');
-		var pos = new google.maps.LatLng(lat, lng);
+  // Loop through all the places and add a marker to the GMap
+  $('.dinos > li').each(function (i, elem) {
+    var dino = $(this).find('a').html();
 
-		// Create a marker object for this dinosaur
-		var marker = new google.maps.Marker({
-			position : pos
-			, map : map
-			, title : dino
-			, icon : 'images/bone.png'
-			, animation: google.maps.Animation.DROP
-		});
+    // Create some HTML content for the info window
+    // Style the content in your CSS
+    var info = '<div class="info-window">'
+      + '<strong>' + dino + '</strong>'
+      + '<a href="single.php?id=' + $(this).attr('data-id') + '#rate">Rate This!</a>'
+      + '</div>'
+    ;
 
-		// A function for showing this dinosaur's info window
-		function showInfoWindow (ev) {
-			if (ev.preventDefault) {
-				ev.preventDefault();
-			}
+    // Determine this dino's latitude and longitude
+    var lat = $(this).find('meta[itemprop="latitude"]').attr('content');
+    var lng = $(this).find('meta[itemprop="longitude"]').attr('content');
+    var pos = new google.maps.LatLng(lat, lng);
 
-			// Close the previous info window first, if one already exists
-			if (infoWindow) {
-				infoWindow.close();
-			}
+    // Create a marker object for this dinosaur
+    var marker = new google.maps.Marker({
+      position : pos
+      , map : map
+      , title : dino
+      , icon : 'images/bone.png'
+      , animation: google.maps.Animation.DROP
+    });
 
-			// Create an info window object and assign it the content
-			infoWindow = new google.maps.InfoWindow({
-				content : info
-			});
+    // A function for showing this dinosaur's info window
+    function showInfoWindow (ev) {
+      if (ev.preventDefault) {
+        ev.preventDefault();
+      }
 
-			infoWindow.open(map, marker);
-		}
+      // Close the previous info window first, if one already exists
+      if (infoWindow) {
+        infoWindow.close();
+      }
 
-		// Add a click event listener for the marker
-		google.maps.event.addListener(marker, 'click', showInfoWindow);
-		// Add a click event listener to the list item
-		google.maps.event.addDomListener($(this).children('a').get(0), 'click', showInfoWindow);
-	});
+      // Create an info window object and assign it the content
+      infoWindow = new google.maps.InfoWindow({
+        content : info
+      });
+
+      infoWindow.open(map, marker);
+    }
+
+    // Add a click event listener for the marker
+    google.maps.event.addListener(marker, 'click', showInfoWindow);
+    // Add a click event listener to the list item
+    google.maps.event.addDomListener($(this).get(0), 'click', showInfoWindow);
+  });
 });
