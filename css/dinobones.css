@@ -52,3 +52,7 @@
 .is-rated {
   color: #ffe91f;
 }
+
+.info-window strong {
+  display: block;
+}

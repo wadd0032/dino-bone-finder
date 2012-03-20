@@ -5,8 +5,13 @@ require_once 'includes/db.php';
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $rate = filter_input(INPUT_GET, 'rate', FILTER_SANITIZE_NUMBER_INT);
 
-if (empty($id) || $rate < 0 || $rate > 5) {
+if (empty($id)) {
 	header('Location: index.php');
+	exit;
+}
+
+if ($rate < 0 || $rate > 5) {
+	header('Location: single.php?id=' . $id);
 	exit;
 }
 
@@ -19,5 +24,5 @@ $sql->bindValue(':id', $id, PDO::PARAM_INT);
 $sql->bindValue(':rate', $rate, PDO::PARAM_INT);
 $sql->execute();
 
-header('Location: index.php');
+header('Location: single.php?id=' . $id);
 exit;

@@ -25,7 +25,7 @@ $(document).ready(function () {
     // Style the content in your CSS
     var info = '<div class="info-window">'
       + '<strong>' + dino + '</strong>'
-      + '<a href="single.php?id=' + $(this).attr('data-id') + '#rate">Rate This!</a>'
+      + '<a href="single.php?id=' + $(this).attr('data-id') + '">Rate or Comment!</a>'
       + '</div>'
     ;
 
