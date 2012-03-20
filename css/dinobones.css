@@ -1,58 +1,58 @@
 #map {
-  bottom: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 75%;
+	bottom: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 75%;
 }
 
 .dinos li {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .dinos li:hover {
-  background-color: #f4f3f0;
+	background-color: #f4f3f0;
 }
 
 .dinos a,
 .dinos a:link,
 .dinos a:visited {
-  color: #a18f7f;
-  text-decoration: none;
+	color: #a18f7f;
+	text-decoration: none;
 }
 
 .dinos li meter {
-  display: inline-block;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  width: 0;
+	display: inline-block;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	width: 0;
 
-  -webkit-appearance: none;
-  appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
 }
 
 .rater {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
 
-  list-style-type: none;
-  line-height: 1;
+	list-style-type: none;
+	line-height: 1;
 }
 
 .rater-level {
-  float: left;
+	float: left;
 
-  color: #efecd2;
+	color: #efecd2;
 }
 
 .rater-level a,
 .rater-level a:link,
 .rater-level a:visited {
-  color: #efecd2;
-  text-decoration: none
+	color: #efecd2;
+	text-decoration: none
 }
 
 .rater-level a:hover,
@@ -68,9 +68,9 @@
 .is-rated-hover a,
 .is-rated-hover a:link,
 .is-rated-hover a:visited {
-  color: #ffe91f;
+	color: #ffe91f;
 }
 
 .info-window strong {
-  display: block;
+	display: block;
 }
