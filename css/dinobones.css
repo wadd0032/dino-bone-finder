@@ -46,11 +46,32 @@
   float: left;
 
   color: #efecd2;
+}
+
+.rater-level a,
+.rater-level a:link,
+.rater-level a:visited {
+  color: #efecd2;
   text-decoration: none
 }
 
-.is-rated {
+.is-rated,
+.is-rated a,
+.is-rated a:link,
+.is-rated a:visited {
   color: #ffe91f;
+}
+
+.rater-level a:hover,
+.rater-level a:focus,
+.rater-level a:active,
+.is-rated a:hover,
+.is-rated a:focus,
+.is-rated a:active,
+.is-rated-hover a,
+.is-rated-hover a:link,
+.is-rated-hover a:visited {
+  color: #fda53a;
 }
 
 .info-window strong {

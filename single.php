@@ -46,12 +46,10 @@ include 'includes/theme-top.php';
 </dl>
 
 <h2>Rate</h2>
-<ol class="rater">
-  <li class="rater-level"><a href="rate.php?id=<?php echo $dino['id']; ?>&rate=1">★</a></li>
-  <li class="rater-level"><a href="rate.php?id=<?php echo $dino['id']; ?>&rate=2">★</a></li>
-  <li class="rater-level"><a href="rate.php?id=<?php echo $dino['id']; ?>&rate=3">★</a></li>
-  <li class="rater-level"><a href="rate.php?id=<?php echo $dino['id']; ?>&rate=4">★</a></li>
-  <li class="rater-level"><a href="rate.php?id=<?php echo $dino['id']; ?>&rate=5">★</a></li>
+<ol class="rater rater-usable">
+  <?php for ($i = 1; $i <= 5; $i++) : ?>
+    <li class="rater-level"><a href="rate.php?id=<?php echo $dino['id']; ?>&rate=5">★</a></li>
+  <?php endfor; ?>
 </ol>
 
 <?php
