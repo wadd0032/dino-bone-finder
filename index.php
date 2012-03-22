@@ -13,6 +13,10 @@ include 'includes/theme-top.php';
 ?>
 
 <button id="geo">Find Me</button>
+<form id="geo-form">
+	<label for="adr">Address</label>
+	<input id="adr">
+</form>
 
 <ol class="dinos">
 <?php foreach ($results as $dino) : ?>
@@ -24,6 +28,7 @@ include 'includes/theme-top.php';
 		}
 	?>
 	<li itemscope itemtype="http://schema.org/TouristAttraction" data-id="<?php echo $dino['id']; ?>">
+		<strong class="distance"></strong>
 		<a href="single.php?id=<?php echo $dino['id']; ?>" itemprop="name"><?php echo $dino['name']; ?></a>
 		<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
 			<meta itemprop="latitude" content="<?php echo $dino['lat']; ?>">

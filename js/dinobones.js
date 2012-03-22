@@ -105,6 +105,10 @@ $(document).ready(function () {
   /***** Geolocation **********************************/
   /****************************************************/
 
+  var userMarker;
+
+  // A function to display the user on the Google Map
+  //  and display the list of closest locations
   function displayUserLoc (lat, lng) {
     var locDistances = []
       , totalLocs = locations.length
@@ -112,13 +116,18 @@ $(document).ready(function () {
     ;
 
     // Create a new marker on the Google Map for the user
-    var marker = new google.maps.Marker({
-      position : userLoc
-      , map : map
-      , title : 'You are here.'
-      , icon : 'images/user.png'
-      , animation: google.maps.Animation.DROP
-    });
+    //  or just reposition the already existent one
+    if (userMarker) {
+      userMarker.setPosition(userLoc);
+    } else {
+      userMarker = new google.maps.Marker({
+        position : userLoc
+        , map : map
+        , title : 'You are here.'
+        , icon : 'images/user.png'
+        , animation: google.maps.Animation.DROP
+      });
+    }
 
     // Center the map on the user's location
     map.setCenter(userLoc);
@@ -144,14 +153,14 @@ $(document).ready(function () {
     // We can use the resorted locations to reorder the list in place
     // You may want to do something different like clone() the list and display it in a new tab
     for (var j = 0; j < totalLocs; j++) {
-      $dinoList.append(
-        $dinoList
-          // Find the <li> element that matches the current location
-          .find('[data-id="' + locDistances[j].id + '"]')
-          // Add the distance to the start
-          // Making the distance only have 1 decimal place
-          .prepend(locDistances[j].distance.toFixed(1))
-      );
+      // Find the <li> element that matches the current location
+      var $li = $dinoList.find('[data-id="' + locDistances[j].id + '"]');
+
+      // Add the distance to the start
+      // `toFixed()` makes the distance only have 1 decimal place
+      $li.find('.distance').html(locDistances[j].distance.toFixed(1));
+
+      $dinoList.append($li);
     }
   }
 
@@ -164,4 +173,22 @@ $(document).ready(function () {
       });
     });
   }
+
+  $('#geo-form').on('submit', function (ev) {
+    ev.preventDefault();
+
+    // Google Maps Geo-coder will take an address and convert it to lat/lng
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({
+      // Append 'Ottawa, ON' so our users don't have to
+      address : $('#adr').val() + ', Ottawa, ON'
+      , region : 'CA'
+    }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          displayUserLoc(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+        }
+      }
+    );
+  });
 });
