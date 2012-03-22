@@ -105,60 +105,62 @@ $(document).ready(function () {
   /***** Geolocation **********************************/
   /****************************************************/
 
+  function displayUserLoc (lat, lng) {
+    var locDistances = []
+      , totalLocs = locations.length
+      , userLoc = new google.maps.LatLng(lat, lng);
+    ;
+
+    // Create a new marker on the Google Map for the user
+    var marker = new google.maps.Marker({
+      position : userLoc
+      , map : map
+      , title : 'You are here.'
+      , icon : 'images/user.png'
+      , animation: google.maps.Animation.DROP
+    });
+
+    // Center the map on the user's location
+    map.setCenter(userLoc);
+
+    // Create a new LatLon object for using with latlng.min.js
+    var current = new LatLon(lat, lng);
+
+    // Loop through all the locations and calculate their distances
+    for (var i = 0; i < totalLocs; i++) {
+      locDistances.push({
+        id : locations[i].id
+        , distance : parseFloat(current.distanceTo(new LatLon(locations[i].lat, locations[i].lng)))
+      });
+    }
+
+    // Sort the distances with the smallest first
+    locDistances.sort(function (a, b) {
+      return a.distance - b.distance;
+    });
+
+    var $dinoList = $('.dinos');
+
+    // We can use the resorted locations to reorder the list in place
+    // You may want to do something different like clone() the list and display it in a new tab
+    for (var j = 0; j < totalLocs; j++) {
+      $dinoList.append(
+        $dinoList
+          // Find the <li> element that matches the current location
+          .find('[data-id="' + locDistances[j].id + '"]')
+          // Add the distance to the start
+          // Making the distance only have 1 decimal place
+          .prepend(locDistances[j].distance.toFixed(1))
+      );
+    }
+  }
+
   // Check if the browser supports geolocation and if there is a 'Find Me' button
   if (navigator.geolocation && $('#geo').length) {
     $('#geo').click(function () {
-      var locDistances = []
-        , totalLocs = locations.length
-        , userLoc
-      ;
-
       // Request access for the current position and wait for the user to grant it
       navigator.geolocation.getCurrentPosition(function (pos) {
-        userLoc = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-
-        // Create a new marker on the Google Map for the user
-        var marker = new google.maps.Marker({
-          position : userLoc
-          , map : map
-          , title : 'You are here.'
-          , icon : 'images/user.png'
-          , animation: google.maps.Animation.DROP
-        });
-
-        // Center the map on the user's location
-        map.setCenter(userLoc);
-
-        // Create a new LatLon object for using with latlng.min.js
-        var current = new LatLon(pos.coords.latitude, pos.coords.longitude);
-
-        // Loop through all the locations and calculate their distances
-        for (var i = 0; i < totalLocs; i++) {
-          locDistances.push({
-            id : locations[i].id
-            , distance : parseFloat(current.distanceTo(new LatLon(locations[i].lat, locations[i].lng)))
-          });
-        }
-
-        // Sort the distances with the smallest first
-        locDistances.sort(function (a, b) {
-          return a.distance - b.distance;
-        });
-
-        var $dinoList = $('.dinos');
-
-        // We can use the resorted locations to reorder the list in place
-        // You may want to do something different like clone() the list and display it in a new tab
-        for (var j = 0; j < totalLocs; j++) {
-          $dinoList.append(
-            $dinoList
-              // Find the <li> element that matches the current location
-              .find('[data-id="' + locDistances[j].id + '"]')
-              // Add the distance to the start
-              // Making the distance only have 1 decimal place
-              .prepend(locDistances[j].distance.toFixed(1))
-          );
-        }
+        displayUserLoc(pos.coords.latitude, pos.coords.longitude);
       });
     });
   }
