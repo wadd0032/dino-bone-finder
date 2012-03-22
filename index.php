@@ -12,6 +12,8 @@ include 'includes/theme-top.php';
 
 ?>
 
+<button id="geo">Find Me</button>
+
 <ol class="dinos">
 <?php foreach ($results as $dino) : ?>
 	<?php
