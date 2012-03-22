@@ -158,7 +158,7 @@ $(document).ready(function () {
 
       // Add the distance to the start
       // `toFixed()` makes the distance only have 1 decimal place
-      $li.find('.distance').html(locDistances[j].distance.toFixed(1));
+      $li.find('.distance').html(locDistances[j].distance.toFixed(1) + ' km');
 
       $dinoList.append($li);
     }
