@@ -164,8 +164,9 @@ $(document).ready(function () {
     }
   }
 
-  // Check if the browser supports geolocation and if there is a 'Find Me' button
-  if (navigator.geolocation && $('#geo').length) {
+  // Check if the browser supports geolocation
+  // It would be best to hide the geolocation button if the browser doesn't support it
+  if (navigator.geolocation) {
     $('#geo').click(function () {
       // Request access for the current position and wait for the user to grant it
       navigator.geolocation.getCurrentPosition(function (pos) {
