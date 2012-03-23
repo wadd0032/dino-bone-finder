@@ -1,9 +1,10 @@
 $(document).ready(function () {
+	
 	// Create an object that holds options for the GMap
 	var gmapOptions = {
-		center : new google.maps.LatLng(45.423494,-75.697933)
-		, zoom : 13
-		, mapTypeId: google.maps.MapTypeId.ROADMAP
+		center : new google.maps.LatLng(45.423494,-75.697933)	//search for lat. $ long. for Ottawa
+		, zoom : 13		//test-drive numbers until you get a zoom you like
+		, mapTypeId: google.maps.MapTypeId.ROADMAP	//designates the type of view you want to use
 	};
 
 	// Create a variable to hold the GMap and add the GMap to the page
@@ -39,7 +40,7 @@ $(document).ready(function () {
 
 		// A function for showing this dinosaur's info window
 		function showInfoWindow (ev) {
-			if (ev.preventDefault) {
+			if (ev.preventDefault) {		//stops links on left from going to the single page
 				ev.preventDefault();
 			}
 
