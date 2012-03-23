@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 15, 2012 at 07:06 PM
+-- Generation Time: Mar 21, 2012 at 12:19 PM
 -- Server version: 5.1.57
 -- PHP Version: 5.3.6
 
@@ -32,5 +32,7 @@ CREATE TABLE IF NOT EXISTS `dinobones` (
   `adr` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lat` double NOT NULL,
   `lng` double NOT NULL,
+  `rate_count` int(11) NOT NULL,
+  `rate_total` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
