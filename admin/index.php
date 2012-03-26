@@ -1,25 +1,34 @@
 <?php
 
+require_once '../includes/users.php';
+
+if (!user_is_signed_in()) {
+	header('Location: sign-in.php');
+	exit;
+}
+
 require_once '../includes/db.php';
 
 $results = $db->query('
-	SELECT id, name, street_address, longitude, latitude
-	FROM garden_locations
+	SELECT id, name, adr, lat, lng, rate_count, rate_total
+	FROM dinobones
 	ORDER BY name ASC
 ');
 
-include_once 'includes/theme-top.php';
+include_once '../includes/theme-top.php';
 
-?>
+?><!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Admin</title>
+</head>
 
-<div id="revisions">
-	<h1>Admin. &middot; Ottawa Community Gardens</h1>
-	
-	<div class="button">
-		<a href="add.php">Add a Garden</a>
-	</div>
+<body>
 
-	<ul>
+<a href="sign-out.php">Sign Out</a>
+
+	<ol>
 		<?php foreach ($results as $garden) : ?>
 			<li>
 				<?php echo $garden['name']; ?>
@@ -34,6 +43,6 @@ include_once 'includes/theme-top.php';
 
 <?php
 
-include_once 'includes/theme-top.php';
+include_once '../includes/theme-bottom.php';
 
 ?>
